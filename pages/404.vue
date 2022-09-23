@@ -2,8 +2,8 @@
 
 <template>
   <div class="container text-center mt-5">
-    <h1>WelCome to Restaurent</h1>
-    <a href="/restaurants">Go to Restaurent</a>
+    <h1>Page Not Found</h1>
+    <a href="/restaurants">Go back</a>
   </div>
 </template>
 
