@@ -1,11 +1,21 @@
-<script setup lang="ts">
+<script setup>
 import restaurants from "@/data.json";
 
 const route = useRoute();
 const name = route.params.name;
 
 const restaurant = restaurants.filter((r) => r.name === name);
-console.log(restaurant);
+// console.log(restaurant);
+
+useMeta({
+  title: restaurant[0] ? name : "404- Resaurant Not Found",
+  meta: [
+    {
+      name: "viewport",
+      content: "width=device-width, initial-scale=1.0",
+    },
+  ],
+});
 </script>
 
 <template>
@@ -35,11 +45,23 @@ console.log(restaurant);
           </div>
         </div>
       </div>
-      <div class="row" v-else>
-        <h1>restaurant Not Found!</h1>
-        <button class="btn btn-primary" @click="$router.push('/restaurants')">
-          Go Back
-        </button>
+      <div v-else class="row">
+        <div class="col-md-8 p-5 m-auto">
+          <NuxtLayout name="error">
+            <template #header>
+              <h4>Restaurant Not Found!</h4>
+            </template>
+
+            <template #btnRedirect>
+              <button
+                class="btn btn-primary m-2"
+                @click="$router.push('/restaurants')"
+              >
+                Go Back
+              </button>
+            </template>
+          </NuxtLayout>
+        </div>
       </div>
     </div>
   </div>
